@@ -17,7 +17,7 @@
 <div class="col-xs-4"></div>
     <div class="col-xs-2">
              Enter a Start Date:
-            <input class=="ipt" type="date" name="StartDate" placeholder="maintainance date" max="2020-12-31" required ><br><br>
+             <input class="form-control" id="ex3" type="StartDate" name="EndDate" min="2000-01-02" required><br><br>
             
             Enter an End Date:<br>
             <input class="form-control" id="ex3" type="date" name="EndDate" min="2000-01-02" required><br><br>

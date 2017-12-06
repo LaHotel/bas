@@ -17,10 +17,10 @@
 <div class="col-xs-4"></div>
     <div class="col-xs-2">
              Enter a Start Date:
-             <input class="form-control" id="ex3" type="StartDate" name="EndDate" min="2000-01-02" required><br><br>
+             <input class="form-control" id="ex3" type="date" name="StartDate" min="2000-01-02" required><br><br>
             
             Enter an End Date:<br>
-            <input class="form-control" id="ex3" type="date" name="EndDate" min="2000-01-02" required><br><br>
+            <input class="form-control" id="ex3" type="date" name="EndDate" min="StartDate" required><br><br>
        
     </div> 
     <div class = "col-xs-4">
@@ -31,7 +31,7 @@
             <input type="checkbox" name="Wifi" value="150" > Wifi 150฿<br>
     </div>
 </div>
-    <br><br><br><br><br><br><br><br>
+    
 
     <center><div style="width:400px;">
 

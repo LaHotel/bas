@@ -33,6 +33,13 @@ Route::get('/complete', function () {
     return view('complete');
 });
 
+Route::get('/information', function () {
+    return view('information');
+});
+
+Route::get('/fail', function () {
+    return view('fail');
+});
 
 
 Auth::routes();
@@ -47,6 +54,14 @@ Route::get('/delete/{id}/{DateStart}/{DateEnd}/{RoomType}', 'TimeController@dele
 Route::get('/create', 'TimeController@index');
 
 Route::get('/update/{id}', 'TimeController@update');
+
+
+Route::get('session', function () {
+    return Session::put('full','Jill');
+});
+Route::get('sessionget', function () {
+    return Session::get('full');
+});
 
 Route::get('/delete', function () {
     

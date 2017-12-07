@@ -101,7 +101,6 @@
 
 
 </div>
-
 <div class="container text-center">    
 <h3 class="margin">Respect and leave the property as you arrived for the benefit of other guest.</h3><br>
 <div class="row">
@@ -135,23 +134,6 @@
   </div>
 </div>
 
-
-<!-- Footer -->
-
-
-<!-- <div class="container text-center">   
-    <form action="{{url('/menu')}}" method ='get'>
-    <div class="col-sm-6 text-left">
-            <input type="submit" name = "Back" value="Back" class="btn btn-default">
-      </div>        
-    </form>
-
-    <div class="col-md-6 text-right">   
-      <form id="thistoo" action="{{ url('check') }}" method="get">
-        <input type="submit" name = "Next" value="Next" class="btn btn-default" >
-      </form>
-    </div> 
-</div> -->
 <div class="container text-center"> 
 <center><div style="width:400px;">
         <form id="thistoo" action="{{ url('check') }}" method="get">

@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
-
 <div class="container">
     <img class="img-responsive" src="images/top.jpg" alt="Chania" style="width:150%;">
 </div>

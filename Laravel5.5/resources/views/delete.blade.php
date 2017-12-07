@@ -50,12 +50,13 @@
   </table>
 </div>
 
-<div class="col-md-4 center-block">
-        <form id="thisone" action="{{ url('/home') }}" method="get">
-            <input type="submit" name = "Back" value="Back" class="btn btn-default">
-            
-        </form>
+<center><div style=" width: 130px"> 
+<form id="thisone" action="{{ url('/menu') }}" method="get">
+    <input type="submit" name = "Back" value="Back" class="btn btn-default">                
+</form>
 </div>
+</center>
+
 
 
 @endsection

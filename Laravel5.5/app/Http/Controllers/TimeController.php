@@ -1,7 +1,10 @@
 <?php
+namespace App\Http\Controllers;
+use Session;
+use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Booking;
-namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -37,21 +40,7 @@ class TimeController extends Controller
      */
     public function store(Request $request)
     {
-        // $item = \DB::table('Booking')
-        //  ->where('Name','=',$request->input('StartDate'));       
         
-        // $tableBooking = new \App\Booking;
-        // $tableBooking->Name = Auth::user()->name;
-        // $tableBooking->RoomType = $request->input('RoomType');
-        // $tableBooking->DateStart = $request->input('StartDate');
-        // $tableBooking->DateEnd = $request->input('EndDate');
-        // $tableBooking->Optional1 = $request->input('Breakfast');
-        // $tableBooking->Optional2 = $request->input('Dinner');
-        // $tableBooking->Optional3 = $request->input('Bed');
-        // $tableBooking->Optional4 = $request->input('Wifi');        
-        // $tableBooking->save();
-        
-
         $start = 'StartDate';
         $end = 'EndDate';
         $x = 0;
@@ -59,10 +48,15 @@ class TimeController extends Controller
         $end = strtotime($_GET['EndDate']);             
         $currentdate = $start;
         $temp = $currentdate ;
-        if($start>$end){
-            return Redirect::to('/check');
+        $today = time();
+        if($start>$end || $currentdate < $today ){
+            return redirect::to('/check');
             
         }
+        // elseif($current>$start){
+        //     return redirect::to('/check');
+        // }
+
         while($currentdate <= $end){
             $currentdate = strtotime('+1 days', $currentdate);
             $tableStatus = new \App\Status;
@@ -85,7 +79,6 @@ class TimeController extends Controller
         }
        
         $currentdate = $temp;
-
         if($x==0){
             echo "$currentdate\n";
             echo "$end";
@@ -159,73 +152,11 @@ class TimeController extends Controller
 
         }
         else{
-                return view('fail');
+                $title='bas';
+                return view('fail',['title'=>$title]);
 
         }
 
-        // while($currentdate <= $end)
-        // {
-        //     $type = $request->input('RoomType');
-        //     $currentdate = strtotime('+1 days', $currentdate);
-        //     $item2 = \DB::table('Status')
-        //     ->where('Date','=', $currentdate)->first();
-       
-        //     if($item2 === NULL){
-                
-        //         $tableStatus = new \App\Status;
-        //         if($request->input('RoomType') == 'Single' ){
-        //             $tableStatus->Date = $currentdate;
-        //             $tableStatus->Single = 1;
-        //             $tableStatus->Duo = 0;
-        //             $tableStatus->Family = 0;
-        //             $tableStatus->Group = 0;
-        //             $tableStatus->save();
-        //         }
-        //         elseif($request->input('RoomType') == 'Duo'){
-        //             $tableStatus->Date = $currentdate;
-        //             $tableStatus->Single = 0;
-        //             $tableStatus->Duo = 1;
-        //             $tableStatus->Family = 0;
-        //             $tableStatus->Group = 0;
-        //             $tableStatus->save();
-        //         }
-        //         elseif($request->input('RoomType') == 'Family'){
-        //             $tableStatus->Date = $currentdate;
-        //             $tableStatus->Single = 0;
-        //             $tableStatus->Duo = 0;
-        //             $tableStatus->Family = 1;
-        //             $tableStatus->Group = 0;
-        //             $tableStatus->save();
-        //         }
-        //         else{
-        //             $tableStatus->Date = $currentdate;
-        //             $tableStatus->Single = 0;
-        //             $tableStatus->Duo = 0;
-        //             $tableStatus->Family = 0;
-        //             $tableStatus->Group = 1;
-        //             $tableStatus->save();
-        //         } 
-                             
-           
-        //     }
-        //     else{
-
-        //         $tableStatus = new \App\Status;
-        //         // $tableStatus->Date = $currentdate;
-        //         // $type = $request->input('RoomType');
-              
-        //         if($item2->$type > 4){
-        //             return view('fail');
-        //         } 
-        //         else{
-        //              \DB::table('status')->where('Date','=', $currentdate)->increment($type,1);
-        //              $item = \DB::table('Booking')
-        //              ->where('Name','=',$request->input('StartDate'));     
-                   
-        //         }
-                              
-        //     }
-        // }
         return view('complete');
     }
  
@@ -287,6 +218,44 @@ class TimeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function store2(Request $request){
+        $start = 'StartDate';
+        $end = 'EndDate';
+        $x = 0;
+        $start = strtotime($_GET['StartDate']);
+        $end = strtotime($_GET['EndDate']);             
+        $currentdate = $start;
+        $temp = $currentdate ;
+        if($start>$end){
+            return Redirect::to('/check');
+            
+        }
+        while($currentdate <= $end){
+            $currentdate = strtotime('+1 days', $currentdate);
+            $tableStatus = new \App\Status;
+           
+            $item2 = \DB::table('Status')->where('Date','=', $currentdate)->first();
+            $type = $request->input('RoomType');
+            if($item2 == NULL){
+                
+            }
+            else
+            {
+                if($item2->$type >4 ){
+                    $request->session()->flash('Full',$type.'full');
+                    return redirect('/fail');
+                }
+                else{
+                  
+                }               
+            }
+        }
+
+
+
+
+
+    }
     public function destroy($id)
     {
         //

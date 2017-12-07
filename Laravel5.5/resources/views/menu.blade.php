@@ -20,20 +20,6 @@
 <center><form method="get" action="{{ url('delete') }}" >
       <input type="submit" name = "History" value="History" class="btn btn-default">
 </form></center>
-<!-- <footer class="container text-center">
-            <p> <br>    </p> 
-        </footer>
-
-<div class="btn-group btn-group-justified">
-  <div class="btn-group">
-  <form method="get" action="{{ url('room') }}" >
-    <button type="button" class="btn btn-default" input type="submit" name = "Reservation" value="Reservation">Reservation</button>
-    </form>
-  </div>
-  <div class="btn-group">
-  <form method="get" action="{{ url('delete') }}" >
-    <button type="button" class="btn btn-default" input type="submit" name = "Reservation" value="Reservation">History</button>
-    </form> -->
   </div>
  
 </div>

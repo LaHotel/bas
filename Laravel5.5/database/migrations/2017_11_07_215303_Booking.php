@@ -14,7 +14,7 @@ class Booking extends Migration
     public function up()
     {
         Schema::create('Booking', function (Blueprint $table) {
-            $table->int('Booking_id');
+            $table->integer('Booking_id');
             $table->string('Name');
             $table->string('RoomType');
             $table->date('DateStart');

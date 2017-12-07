@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
+<div class="container">
+<img class="img-responsive" src="images/top.jpg" alt="Chania" style="width:150%;">
+</div>
+
 <form action="{{url('/insertdate')}}" method ='get'>
 <div class row>
   <center>
@@ -32,7 +36,7 @@
     </div>
 </div>
     
-
+<div class="container text-center"> 
     <center><div style="width:400px;">
 
         <div style="float: right; width: 225px"> 
@@ -49,5 +53,9 @@
         </div>
 
     </center>
+    </div>
+    <footer class="container text-center">
+            <p> <br>    </p> 
+        </footer>
 
 @endsection

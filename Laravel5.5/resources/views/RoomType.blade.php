@@ -103,21 +103,34 @@
 </div>
 
 <div class="container text-center">    
-<h3 class="margin">Where To Find Me?</h3><br>
+<h3 class="margin">Respect and leave the property as you arrived for the benefit of other guest.</h3><br>
 <div class="row">
   <div class="col-sm-3">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>
+    <dt>Bedroom 1</dt>
+  1 king bed
+  <dt> Common spaces</dt>
+  1 sofa bed</p>
     
   </div>
   <div class="col-sm-3"> 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p><dt>Amenities<br></dt>
+    Family/kid friendly<br>
+    Breakfast<br>
+    Wireless Internet<br>
+    Free parking on premises</p>
     
   </div>
   <div class="col-sm-3"> 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p><dt>House Rules<br></dt>
+      No smoking<br>
+      Not suitable for pets<br>
+      Check-in is anytime after 2PM<br>
+      Check out by 12PM (noon)</p>
   </div>
   <div class="col-sm-3"> 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p><dt>Cancellations<br></dt>
+    Cancel up to 7 days before check in and get a 50% refund</p>
    
   </div>
 </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddEndStart extends Migration
+class CreatUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,7 @@ class AddEndStart extends Migration
      */
     public function up()
     {
-        Schema::table('history', function (Blueprint $table) {
-            //
-            $table->string('Start Date');
-            $table->string('End Date');
-        });
+        //
     }
 
     /**
@@ -27,8 +23,6 @@ class AddEndStart extends Migration
      */
     public function down()
     {
-        Schema::table('history', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

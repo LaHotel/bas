@@ -37,86 +37,195 @@ class TimeController extends Controller
      */
     public function store(Request $request)
     {
-        $item = \DB::table('Booking')
-         ->where('Name','=',$request->input('StartDate'));       
+        // $item = \DB::table('Booking')
+        //  ->where('Name','=',$request->input('StartDate'));       
         
-        $tableBooking = new \App\Booking;
-        $tableBooking->Name = Auth::user()->name;
-        $tableBooking->RoomType = $request->input('RoomType');
-        $tableBooking->DateStart = $request->input('StartDate');
-        $tableBooking->DateEnd = $request->input('EndDate');
-        $tableBooking->Optional1 = $request->input('Breakfast');
-        $tableBooking->Optional2 = $request->input('Dinner');
-        $tableBooking->Optional3 = $request->input('Bed');
-        $tableBooking->Optional4 = $request->input('Wifi');        
-        $tableBooking->save();
+        // $tableBooking = new \App\Booking;
+        // $tableBooking->Name = Auth::user()->name;
+        // $tableBooking->RoomType = $request->input('RoomType');
+        // $tableBooking->DateStart = $request->input('StartDate');
+        // $tableBooking->DateEnd = $request->input('EndDate');
+        // $tableBooking->Optional1 = $request->input('Breakfast');
+        // $tableBooking->Optional2 = $request->input('Dinner');
+        // $tableBooking->Optional3 = $request->input('Bed');
+        // $tableBooking->Optional4 = $request->input('Wifi');        
+        // $tableBooking->save();
+        
 
         $start = 'StartDate';
         $end = 'EndDate';
-      
+        $x = 0;
         $start = strtotime($_GET['StartDate']);
         $end = strtotime($_GET['EndDate']);             
         $currentdate = $start;
-
-        while($currentdate <= $end)
-        {
+        $temp = $currentdate ;
+        if($start>$end){
+            return Redirect::to('/check');
             
+        }
+        while($currentdate <= $end){
             $currentdate = strtotime('+1 days', $currentdate);
-            $item2 = \DB::table('Status')
-            ->where('Date','=', $currentdate)->first();
-       
-            if($item2 === NULL){
-                
-                $tableStatus = new \App\Status;
-                if($request->input('RoomType') == 'Single' ){
-                    $tableStatus->Date = $currentdate;
-                    $tableStatus->Single = 1;
-                    $tableStatus->Duo = 0;
-                    $tableStatus->Family = 0;
-                    $tableStatus->Group = 0;
-                    $tableStatus->save();
-                }
-                elseif($request->input('RoomType') == 'Duo'){
-                    $tableStatus->Date = $currentdate;
-                    $tableStatus->Single = 0;
-                    $tableStatus->Duo = 1;
-                    $tableStatus->Family = 0;
-                    $tableStatus->Group = 0;
-                    $tableStatus->save();
-                }
-                elseif($request->input('RoomType') == 'Family'){
-                    $tableStatus->Date = $currentdate;
-                    $tableStatus->Single = 0;
-                    $tableStatus->Duo = 0;
-                    $tableStatus->Family = 1;
-                    $tableStatus->Group = 0;
-                    $tableStatus->save();
-                }
-                else{
-                    $tableStatus->Date = $currentdate;
-                    $tableStatus->Single = 0;
-                    $tableStatus->Duo = 0;
-                    $tableStatus->Family = 0;
-                    $tableStatus->Group = 1;
-                    $tableStatus->save();
-                }              
+            $tableStatus = new \App\Status;
            
+            $item2 = \DB::table('Status')->where('Date','=', $currentdate)->first();
+            $type = $request->input('RoomType');
+            if($item2 == NULL){
+                $x=0;
             }
-            else{
-
-                $tableStatus = new \App\Status;
-                // $tableStatus->Date = $currentdate;
-                $type = $request->input('RoomType');
-              
-                if($item2->$type > 5){
-                    return view('menu');
-                } 
-                else{
-                     \DB::table('status')->where('Date','=', $currentdate)->increment($type,1);  
+            else
+            {
+                if($item2->$type <5 ){
+                    $x=0;
                 }
-                              
+                else{
+                    $x=1;
+                    break;
+                }               
             }
         }
+       
+        $currentdate = $temp;
+
+        if($x==0){
+            echo "$currentdate\n";
+            echo "$end";
+            $item = \DB::table('Booking')
+            ->where('Name','=',$request->input('StartDate'));       
+           
+           $tableBooking = new \App\Booking;
+           $tableBooking->Name = Auth::user()->name;
+           $tableBooking->RoomType = $request->input('RoomType');
+           $tableBooking->DateStart = $request->input('StartDate');
+           $tableBooking->DateEnd = $request->input('EndDate');
+           $tableBooking->Optional1 = $request->input('Breakfast');
+           $tableBooking->Optional2 = $request->input('Dinner');
+           $tableBooking->Optional3 = $request->input('Bed');
+           $tableBooking->Optional4 = $request->input('Wifi');        
+           $tableBooking->save();
+            while($temp <= $end)
+            {
+                echo "-------------";
+                echo "bas";
+                $temp = strtotime('+1 days', $temp);
+                $item2 = \DB::table('Status')
+                ->where('Date','=', $temp)->first();
+           
+                if($item2 === NULL){
+                    
+                    $tableStatus = new \App\Status;
+                    if($request->input('RoomType') == 'Single' ){
+                        $tableStatus->Date = $temp;
+                        $tableStatus->Single = 1;
+                        $tableStatus->Duo = 0;
+                        $tableStatus->Family = 0;
+                        $tableStatus->Group = 0;
+                        $tableStatus->save();
+                    }
+                    elseif($request->input('RoomType') == 'Duo'){
+                        $tableStatus->Date = $temp;
+                        $tableStatus->Single = 0;
+                        $tableStatus->Duo = 1;
+                        $tableStatus->Family = 0;
+                        $tableStatus->Group = 0;
+                        $tableStatus->save();
+                    }
+                    elseif($request->input('RoomType') == 'Family'){
+                        $tableStatus->Date = $temp;
+                        $tableStatus->Single = 0;
+                        $tableStatus->Duo = 0;
+                        $tableStatus->Family = 1;
+                        $tableStatus->Group = 0;
+                        $tableStatus->save();
+                    }
+                    else{
+                        $tableStatus->Date = $temp;
+                        $tableStatus->Single = 0;
+                        $tableStatus->Duo = 0;
+                        $tableStatus->Family = 0;
+                        $tableStatus->Group = 1;
+                        $tableStatus->save();
+                    } 
+                                 
+               
+                }
+                else{
+                        \DB::table('status')->where('Date','=', $temp)->increment($type,1);
+                        $item = \DB::table('Booking')
+                        ->where('Name','=',$request->input('StartDate'));     
+                               
+                    }
+
+            }
+
+        }
+        else{
+                return view('fail');
+
+        }
+
+        // while($currentdate <= $end)
+        // {
+        //     $type = $request->input('RoomType');
+        //     $currentdate = strtotime('+1 days', $currentdate);
+        //     $item2 = \DB::table('Status')
+        //     ->where('Date','=', $currentdate)->first();
+       
+        //     if($item2 === NULL){
+                
+        //         $tableStatus = new \App\Status;
+        //         if($request->input('RoomType') == 'Single' ){
+        //             $tableStatus->Date = $currentdate;
+        //             $tableStatus->Single = 1;
+        //             $tableStatus->Duo = 0;
+        //             $tableStatus->Family = 0;
+        //             $tableStatus->Group = 0;
+        //             $tableStatus->save();
+        //         }
+        //         elseif($request->input('RoomType') == 'Duo'){
+        //             $tableStatus->Date = $currentdate;
+        //             $tableStatus->Single = 0;
+        //             $tableStatus->Duo = 1;
+        //             $tableStatus->Family = 0;
+        //             $tableStatus->Group = 0;
+        //             $tableStatus->save();
+        //         }
+        //         elseif($request->input('RoomType') == 'Family'){
+        //             $tableStatus->Date = $currentdate;
+        //             $tableStatus->Single = 0;
+        //             $tableStatus->Duo = 0;
+        //             $tableStatus->Family = 1;
+        //             $tableStatus->Group = 0;
+        //             $tableStatus->save();
+        //         }
+        //         else{
+        //             $tableStatus->Date = $currentdate;
+        //             $tableStatus->Single = 0;
+        //             $tableStatus->Duo = 0;
+        //             $tableStatus->Family = 0;
+        //             $tableStatus->Group = 1;
+        //             $tableStatus->save();
+        //         } 
+                             
+           
+        //     }
+        //     else{
+
+        //         $tableStatus = new \App\Status;
+        //         // $tableStatus->Date = $currentdate;
+        //         // $type = $request->input('RoomType');
+              
+        //         if($item2->$type > 4){
+        //             return view('fail');
+        //         } 
+        //         else{
+        //              \DB::table('status')->where('Date','=', $currentdate)->increment($type,1);
+        //              $item = \DB::table('Booking')
+        //              ->where('Name','=',$request->input('StartDate'));     
+                   
+        //         }
+                              
+        //     }
+        // }
         return view('complete');
     }
  
@@ -157,6 +266,7 @@ class TimeController extends Controller
             $item3 = \DB::table('Status')->where('Date','=', $current)->first();
             \DB::table('status')->where('Date','=', $current)->decrement($RoomType,1);
         }
+        return redirect('/delete');
     }
 
     /**

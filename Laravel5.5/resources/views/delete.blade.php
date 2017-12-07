@@ -23,9 +23,7 @@
         <th>Cancle</th>
       </tr>
     </thead>
-   
-      
-      
+    
     <?php
   
           foreach($booking as $booking){
@@ -52,12 +50,12 @@
   </table>
 </div>
 
-    <div style="float: left; width: 130px" class="col-xs-4"> 
+<div class="col-md-4 center-block">
         <form id="thisone" action="{{ url('/home') }}" method="get">
             <input type="submit" name = "Back" value="Back" class="btn btn-default">
             
         </form>
-    </div>
+</div>
 
 
 @endsection

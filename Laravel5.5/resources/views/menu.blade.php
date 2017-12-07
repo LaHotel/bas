@@ -4,9 +4,9 @@
 <html>
 <body>
 
-<div class="container">
-<img class="img-responsive" src="images/reception.jpg" alt="Chania" style="width:100%;">
-</div>
+<!-- <div class="container">
+<img class="img-responsive" src="images/2.jpg" alt="Chania" style="width:100%;">
+</div> -->
 
 <center><img src="{{url('images/user.png')}}" width="150" height="150"></center>
 <br>

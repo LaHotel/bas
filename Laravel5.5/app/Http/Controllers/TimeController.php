@@ -80,8 +80,7 @@ class TimeController extends Controller
        
         $currentdate = $temp;
         if($x==0){
-            echo "$currentdate\n";
-            echo "$end";
+           
             $item = \DB::table('Booking')
             ->where('Name','=',$request->input('StartDate'));       
            
@@ -97,8 +96,7 @@ class TimeController extends Controller
            $tableBooking->save();
             while($temp <= $end)
             {
-                echo "-------------";
-                echo "bas";
+             
                 $temp = strtotime('+1 days', $temp);
                 $item2 = \DB::table('Status')
                 ->where('Date','=', $temp)->first();
